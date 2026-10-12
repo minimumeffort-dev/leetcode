@@ -37,6 +37,7 @@ The comments explain the main ideas and why the time and space costs follow from
 | --- | --- |
 | [binary_search.py](binary_search.py) | Finds a value in a sorted list by repeatedly halving the search range. |
 | [binary_search_recursive.py](binary_search_recursive.py) | Searches a sorted list recursively using index bounds, stopping when the range is empty. |
+| [binary_search_tree.py](binary_search_tree.py) | Recursively searches a BST by choosing one child at each node, with test examples for balanced trees, chains and empty trees. |
 | [bubble_sort.py](bubble_sort.py) | Swaps neighboring values until a full pass makes no changes. |
 | [insertion_sort.py](insertion_sort.py) | Grows a sorted prefix by shifting larger values and inserting the next number. |
 | [merge_sort.py](merge_sort.py) | Recursively sorts two halves, then merges them back into the original list. |
