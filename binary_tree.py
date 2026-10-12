@@ -44,6 +44,19 @@ class Node:
 
         return nodes
 
+    def postorder(self, root, nodes=None):
+        if nodes is None:
+            nodes = []
+
+        if root is None:
+            return nodes
+
+        self.postorder(root.left, nodes)
+        self.postorder(root.right, nodes)
+        nodes.append(root.value)
+
+        return nodes
+
 
 if __name__ == "__main__":
     tree = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
@@ -53,3 +66,5 @@ if __name__ == "__main__":
     print(dlr)
     ldr = tree.inorder(tree)
     print(ldr)
+    lrd = tree.postorder(tree)
+    print(lrd)
