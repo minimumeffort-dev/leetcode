@@ -40,8 +40,15 @@ class Solution:
                 outgoing = nums[j - 1]
                 incoming = nums[j + k - 1]
 
-                # Remove one occurrence, including when duplicates are present.
+                # bisect_left returns the leftmost insertion index in O(log k).
+                # Since outgoing is present, this is its first occurrence.
+                # The search leaves the list unchanged; pop removes one copy
+                # and can shift O(k) later elements left to close the gap.
                 window.pop(bisect_left(window, outgoing))
+
+                # insort finds an insertion index with binary search (O(log k)),
+                # then inserts incoming into this list, preserving sorted order.
+                # Shifting later elements right makes the whole step O(k).
                 insort(window, incoming)
 
         return medians
