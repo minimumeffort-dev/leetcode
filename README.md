@@ -29,6 +29,7 @@ The comments explain the main ideas and why the time and space costs follow from
 | [longest_palindromic_substring_manacher.py](longest_palindromic_substring_manacher.py) | Uses Manacher's algorithm to reuse palindrome symmetry and finish in O(n) time. |
 | [merge_intervals.py](merge_intervals.py) | Sorts intervals by their start, then combines overlapping ranges in one pass. |
 | [meeting_rooms_ii.py](meeting_rooms_ii.py) | Sorts meetings by their start and reuses rooms with a min-heap of end times. |
+| [validate_binary_search_tree.py](validate_binary_search_tree.py) | Checks each node against bounds inherited from its ancestors to validate a strict BST. |
 
 ## Algorithms and data structures
 
