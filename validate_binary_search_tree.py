@@ -1,4 +1,11 @@
-"""Validate a binary search tree using bounds inherited from its ancestors."""
+"""LeetCode 98: Validate Binary Search Tree.
+
+Validate a binary search tree using bounds inherited from its ancestors.
+
+Problem: https://leetcode.com/problems/validate-binary-search-tree/
+Submission:
+https://leetcode.com/problems/validate-binary-search-tree/submissions/2169960110/
+"""
 
 
 class TreeNode:
