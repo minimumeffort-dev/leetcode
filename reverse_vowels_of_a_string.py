@@ -3,7 +3,13 @@
 
 class Solution:
     def reverseVowels(self, s: str) -> str:
-        """Swap vowels with two pointers; O(n) time and O(n) character storage."""
+        """Swap vowels with two pointers; O(n) time and O(n) character storage.
+
+        Each pointer moves inward without revisiting its previous positions,
+        so the nested loops make O(n) moves in total. Creating and joining
+        the character list also take O(n) time. That list and the result use
+        O(n) space; the ten-vowel set has constant size.
+        """
         vowels = set("aeiouAEIOU")
         chars = list(s)
         left, right = 0, len(chars) - 1

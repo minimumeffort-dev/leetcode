@@ -5,7 +5,13 @@ from heapq import heappop, heappush
 
 class Solution:
     def minMeetingRooms(self, intervals: list[list[int]]) -> int:
-        """Sort the input in place; O(n log n) time and O(n) heap space."""
+        """Return the room count in O(n log n) time and O(n) extra space.
+
+        Sorting n meetings costs O(n log n). Each meeting performs one
+        heap push and at most one pop, each O(log r) for r allocated rooms.
+        Since r <= n, the overall bound is O(n log n). The heap can hold
+        n end times; Python's sort can also use O(n) temporary storage.
+        """
         intervals.sort(key=lambda interval: interval[0])
 
         # Keep the latest end time for each allocated room, including idle ones.

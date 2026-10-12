@@ -11,7 +11,12 @@ class ListNode:
 
 class Solution:
     def deleteDuplicates(self, head: ListNode | None) -> ListNode | None:
-        """Keep one node per value in a sorted list; O(n) time, O(1) space."""
+        """Keep one node per value in a sorted list; O(n) time, O(1) space.
+
+        Each iteration either removes a node or advances current. Across
+        n nodes, those actions total O(n), even when current stays at a run
+        of duplicates. A fixed number of pointers updates the existing list.
+        """
         current = head
         while current is not None and current.next is not None:
             if current.val == current.next.val:

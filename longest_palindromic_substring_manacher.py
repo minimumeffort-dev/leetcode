@@ -3,7 +3,14 @@
 
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        """Find the longest palindrome with Manacher's algorithm: O(n) time/space."""
+        """Find the longest palindrome with Manacher's algorithm: O(n) time/space.
+
+        The transformed string has 2n + 1 positions. Mirrored radii reuse
+        matches already checked; new successful expansions advance the
+        rightmost boundary, which can move through only 2n + 1 positions.
+        Each center adds at most one failed comparison, so total work is
+        linear. The transformed string and radii array each use O(n) space.
+        """
         if not s:
             return ""
 

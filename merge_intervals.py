@@ -3,7 +3,12 @@
 
 class Solution:
     def merge(self, intervals: list[list[int]]) -> list[list[int]]:
-        """Sort the input in place and merge; O(n log n) time, O(n) space."""
+        """Sort the input in place and merge; O(n log n) time, O(n) space.
+
+        Sorting n intervals costs O(n log n); the following scan performs
+        constant work per interval, adding O(n). The result can contain
+        n intervals, and Python's sort can also use O(n) temporary storage.
+        """
         intervals.sort(key=lambda interval: interval[0])
 
         merged: list[list[int]] = []

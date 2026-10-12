@@ -2,7 +2,13 @@
 
 
 def insertion_sort(elements: list[int]) -> list[int]:
-    """Sort stably in place; O(n^2) worst-case time and O(1) extra space."""
+    """Sort stably in place; O(n^2) worst-case time and O(1) extra space.
+
+    Inserting position i may shift all i earlier values. In the worst case,
+    1 + 2 + ... + (n - 1) shifts give O(n^2) work. Sorted input needs only
+    one failed comparison per insertion, giving O(n) best-case time.
+    The saved value and indices use O(1) space; the input list is reused.
+    """
     for index in range(1, len(elements)):
         value = elements[index]
         previous_index = index - 1

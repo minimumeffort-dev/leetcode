@@ -11,7 +11,12 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: ListNode | None) -> ListNode | None:
-        """Reverse links iteratively in O(n) time and O(1) extra space."""
+        """Reverse links iteratively in O(n) time and O(1) extra space.
+
+        Each of n nodes is visited once and has one link redirected. The
+        previous/current/following pointers are a fixed amount of storage;
+        no replacement nodes or arrays are created.
+        """
         previous = None
         current = head
 
@@ -25,7 +30,12 @@ class Solution:
         return previous
 
     def reverseRecursive(self, head: ListNode | None) -> ListNode | None:
-        """Reverse links recursively in O(n) time and O(n) call-stack space."""
+        """Reverse links recursively in O(n) time and O(n) call-stack space.
+
+        There is one call per node and constant pointer work as each call
+        returns. The calls form a chain of depth n, so O(n) frames are needed
+        even though the linked-list nodes themselves are reused.
+        """
         if head is None or head.next is None:
             return head
 

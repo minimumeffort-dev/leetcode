@@ -11,7 +11,12 @@ class ListNode:
 
 class Solution:
     def removeElements(self, head: ListNode | None, val: int) -> ListNode | None:
-        """Remove matching nodes in O(n) time and O(1) extra space."""
+        """Remove matching nodes in O(n) time and O(1) extra space.
+
+        The first loop removes a matching head prefix; the second processes
+        the remaining nodes. Each node is removed or passed once in total,
+        so two loops still give O(n) time. Only head/current pointers are stored.
+        """
         # Head matches have no previous node to reconnect, so handle them first.
         while head is not None and head.val == val:
             head = head.next

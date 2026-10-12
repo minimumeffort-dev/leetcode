@@ -14,13 +14,24 @@ class Node:
 
 
 class LinkedList:
-    """Maintain next/prev links; insert and delete take O(1), search takes O(n)."""
+    """Maintain next/prev links for n nodes, using O(n) node/link storage.
+
+    Insert/delete change a fixed number of links, so they take O(1) when
+    the node is already known. Search may visit all n nodes, taking O(n)
+    with constant-time value comparisons. Stored value objects are excluded
+    from the node/link space count.
+    """
 
     def __init__(self) -> None:
         self.head: Node | None = None
 
     def __str__(self) -> str:
-        """Return a display string without printing as a side effect."""
+        """Return a display string without printing as a side effect.
+
+        Visiting n links and collecting/joining L characters takes O(n + L)
+        formatting work and storage. Converting values to text adds costs
+        that depend on the stored objects.
+        """
         values: list[str] = []
         current = self.head
         while current is not None:
@@ -30,7 +41,11 @@ class LinkedList:
         return " -> ".join(values)
 
     def search(self, target: object) -> Node | None:
-        """Return the first matching node, or None when no value matches."""
+        """Return the first matching node, or None when no value matches.
+
+        At most n links are followed, using only one current pointer:
+        O(n) time for constant-time comparisons and O(1) extra space.
+        """
         current = self.head
         while current is not None:
             if current.data == target:
@@ -39,7 +54,11 @@ class LinkedList:
         return None
 
     def insert(self, node: Node) -> None:
-        """Insert a detached node at the head; node must not belong to a list."""
+        """Insert a detached node at the head; node must not belong to a list.
+
+        A fixed number of head/next/prev references change, giving O(1)
+        time and extra space without scanning the list.
+        """
         node.prev = None
         node.next = self.head
 
@@ -49,7 +68,12 @@ class LinkedList:
         self.head = node
 
     def delete(self, node: Node) -> None:
-        """Remove a node that belongs to this list, reconnecting both directions."""
+        """Remove a node that belongs to this list, reconnecting both directions.
+
+        The known node gives direct access to its two neighbors. Updating
+        those links and clearing its own links takes O(1) time/extra space.
+        Locating the node first, if needed, is a separate O(n) search.
+        """
         if node.prev is not None:
             node.prev.next = node.next
         else:

@@ -4,7 +4,11 @@ from math import isqrt
 
 
 class KeyValue:
-    """One stored entry, with readable representations for printing the table."""
+    """One fixed-size entry holding key/value references, using O(1) storage.
+
+    Formatting an entry creates text whose cost depends on its displayed size
+    and the value object's conversion methods.
+    """
 
     def __init__(self, key: str, value: object) -> None:
         self.key = key
@@ -19,9 +23,19 @@ class KeyValue:
 
 
 class HashTable:
-    """A fixed-size hash table for string keys, using double hashing."""
+    """A fixed-size hash table for string keys, using double hashing.
+
+    An array of m slots uses O(m) reference storage, excluding key/value objects.
+    Lookup costs also depend on the key length; see check_for_key below.
+    """
 
     def __init__(self, size: int) -> None:
+        """Allocate m slots in O(m) time/space after O(sqrt(m)) prime checking.
+
+        Testing divisors only through sqrt(m) is enough: a composite number
+        has at least one factor at or below its square root. Creating the
+        m-element slot list dominates the valid-table initialization cost.
+        """
         if not isinstance(size, int):
             raise TypeError("Hash table size must be an integer")
         if size < 2 or any(
@@ -35,6 +49,12 @@ class HashTable:
         """Return (found, index) for a matching or available slot.
 
         index is -1 when the key is absent and the table is full.
+
+        At most m slots are probed. For a key of length k, string hashing
+        and comparisons can cost O(k + 1), giving O(m * (k + 1)) worst-case
+        time. With low load and well-distributed hashes, expected probes
+        are constant, giving expected O(k + 1) time. The second hash creates
+        key + "d", using O(k + 1) temporary space; probe indices use O(1).
         """
         first_index = hash(key) % len(self.data)
         entry = self.data[first_index]
@@ -60,7 +80,11 @@ class HashTable:
         return False, -1
 
     def insert(self, key: str, value: object) -> None:
-        """Insert or update a value; raise OverflowError if no slot is available."""
+        """Insert or update a value; raise OverflowError if no slot is available.
+
+        Probing has the cost described in check_for_key. Updating a value
+        or creating one fixed-size entry adds O(1) work and storage.
+        """
         found, index = self.check_for_key(key)
 
         if index == -1:
@@ -74,7 +98,11 @@ class HashTable:
             self.data[index] = KeyValue(key, value)
 
     def search(self, key: str) -> object:
-        """Return the stored value, or raise KeyError if the key is absent."""
+        """Return the stored value, or raise KeyError if the key is absent.
+
+        Probing has the cost described in check_for_key. Returning the value
+        itself is O(1), because its object is referenced rather than copied.
+        """
         found, index = self.check_for_key(key)
 
         if not found:

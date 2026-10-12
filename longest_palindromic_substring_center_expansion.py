@@ -3,7 +3,14 @@
 
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        """Expand around centers: O(n^2) time, O(1) space excluding the result."""
+        """Expand around centers: O(n^2) time, O(1) space excluding the result.
+
+        There are two centers per character: a character and the next gap.
+        Each can expand through O(n) characters, giving O(n^2) worst-case
+        work, such as on a string of identical characters. Only indices
+        and lengths are stored until the final slice, which needs up to
+        O(n) space for the returned string.
+        """
         best_start = best_length = 0
 
         for center in range(len(s)):

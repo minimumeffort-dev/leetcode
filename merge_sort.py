@@ -2,7 +2,11 @@
 
 
 def merge(low: int, mid: int, high: int, elements: list[int]) -> list[int]:
-    """Merge sorted ranges low..mid and mid+1..high back into elements."""
+    """Merge sorted ranges low..mid and mid+1..high back into elements.
+
+    Each of k = high - low + 1 values is appended once and copied back once,
+    giving O(k) time. The temporary merged list holds k values, using O(k) space.
+    """
     merged: list[int] = []
     left = low
     right = mid + 1
@@ -31,7 +35,13 @@ def merge(low: int, mid: int, high: int, elements: list[int]) -> list[int]:
 
 
 def merge_sort(low: int, high: int, elements: list[int]) -> list[int]:
-    """Sort low..high in place; O(n log n) time and O(n) extra space."""
+    """Sort low..high in place; O(n log n) time and O(n) extra space.
+
+    Halving the range creates O(log n) recursion levels. Merges at any one
+    level process O(n) values in total, so time is O(n log n). The largest
+    merge buffer holds n values; O(log n) active call frames fit within the
+    O(n) overall space bound. Buffers from completed merges are released.
+    """
     if low < high:
         mid = (low + high) // 2
         merge_sort(low, mid, elements)

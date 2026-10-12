@@ -3,7 +3,13 @@
 
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        """Group n words of maximum length k in O(n * (k + 26)) time."""
+        """Group lowercase English words by their letter counts.
+
+        Across n words containing C characters, counting costs O(C).
+        Each word also creates, converts, and hashes a 26-entry counter,
+        giving expected O(C + 26n) time, or O(C + n) for this fixed alphabet.
+        Up to n keys of length 26 and n word references use O(n) extra space.
+        """
         groups: dict[tuple[int, ...], list[str]] = {}
 
         for word in strs:

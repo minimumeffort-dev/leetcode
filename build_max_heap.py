@@ -2,7 +2,13 @@
 
 
 def heapify(arr: list[int]) -> None:
-    """Rearrange arr in place in O(n) time and O(1) extra space."""
+    """Rearrange arr in place in O(n) time and O(1) extra space.
+
+    Most nodes are near the leaves: about n/4 parents can descend one level,
+    n/8 can descend two, n/16 can descend three, and so on. Total work is
+    bounded by n * (1/4 + 2/8 + 3/16 + ...), a constant times n. The algorithm
+    stores only indices and swaps values inside arr, giving O(1) extra space.
+    """
     size = len(arr)
     # Leaves are already heaps; each parent's child subtrees are ready before it.
     for parent_index in range(size // 2 - 1, -1, -1):

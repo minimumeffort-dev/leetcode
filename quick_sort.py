@@ -4,7 +4,11 @@ from random import randrange
 
 
 def partition(low: int, high: int, elements: list[int]) -> int:
-    """Partition low..high into values <= pivot and > pivot; return its index."""
+    """Partition low..high into values <= pivot and > pivot; return its index.
+
+    For k values, each pointer crosses the range at most once, giving O(k)
+    comparisons/swaps overall. The pivot and indices use O(1) extra space.
+    """
     pivot_index = randrange(low, high + 1)
     # The scan expects the pivot at low, regardless of where it was chosen.
     elements[low], elements[pivot_index] = elements[pivot_index], elements[low]
@@ -30,9 +34,15 @@ def partition(low: int, high: int, elements: list[int]) -> int:
 
 
 def quicksort(low: int, high: int, elements: list[int]) -> None:
-    """Sort low..high in place; average O(n log n), worst O(n^2) time.
+    """Sort low..high in place; O(n log n) balanced work, O(n^2) worst case.
 
-    Recursion uses O(log n) stack space on average and O(n) in the worst case.
+    Each partition scans its range once. Balanced partitions give O(log n)
+    levels with O(n) total work per level. With distinct values, random
+    pivots give O(n log n) expected time.
+    One-sided partitions scan n, n - 1, ... values, giving O(n^2) worst-case
+    time; equal values cause that pattern in this two-way version.
+    Expected depth is O(log n) for distinct values and O(n) in the worst case.
+    Each call stores only a few indices, so stack space follows that depth.
     """
     if low < high:
         pivot_index = partition(low, high, elements)

@@ -4,7 +4,13 @@ from collections.abc import Iterable
 
 
 def running_median(elements: Iterable[int | float]) -> None:
-    """Print each running median; O(n^2) total worst-case time, O(n) space."""
+    """Print each running median; O(n^2) total worst-case time, O(n) space.
+
+    Inserting the kth value may shift k - 1 earlier values. Over n inputs,
+    0 + 1 + ... + (n - 1) shifts give O(n^2) worst-case work. Reading one
+    or two middle positions costs O(1) per median. The sorted prefix grows
+    to n stored values, using O(n) space.
+    """
     sorted_numbers: list[int | float] = []
 
     for value in elements:

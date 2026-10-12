@@ -4,8 +4,11 @@
 class Node:
     """Represent a tree by its root; each traversal returns a fresh value list.
 
-    In the traversal notes, n is the node count and h is the tree height.
-    Each returned list uses O(n) space in addition to the recursion stack.
+    Each traversal visits all n nodes once and appends each value once.
+    Appends are amortized O(1), giving O(n) total time. Only a root-to-leaf
+    path is active on the call stack, so recursion uses O(h) frames for
+    tree height h: O(log n) when balanced, O(n) in a chain. The returned
+    list stores n values, using O(n) space.
     """
 
     def __init__(
@@ -16,7 +19,12 @@ class Node:
         self.right = right
 
     def __str__(self) -> str:
-        """Return a sideways display, with right children above their parents."""
+        """Return a sideways display, with right children above their parents.
+
+        Building indentation/lines and joining c displayed characters costs
+        O(c) formatting time and string storage, plus O(h) call frames.
+        A chain can produce O(n^2) indentation characters as depth grows.
+        """
         lines: list[str] = []
 
         def visit(node: "Node | None", level: int = 0, prefix: str = "*") -> None:

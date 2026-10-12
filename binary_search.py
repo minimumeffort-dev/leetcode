@@ -6,7 +6,9 @@ def binary_search(arr: list[int], target: int) -> int:
 
     arr must be sorted in ascending order. If duplicates are present,
     any matching index may be returned.
-    Time is O(log n); extra space is O(1).
+    Each comparison discards about half the remaining range, so after
+    O(log n) comparisons at most one position remains. Only left/right/middle
+    indices are stored, giving O(1) extra space without copying sublists.
     """
     left, right = 0, len(arr) - 1
 

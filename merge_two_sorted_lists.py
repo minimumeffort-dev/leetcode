@@ -13,7 +13,12 @@ class Solution:
     def mergeTwoLists(
         self, list1: ListNode | None, list2: ListNode | None
     ) -> ListNode | None:
-        """Reuse the nodes in O(n + m) time with O(1) extra space."""
+        """Reuse the nodes in O(n + m) time with O(1) extra space.
+
+        Each loop consumes one node from lists of lengths n and m, so there
+        are at most n + m iterations. Attaching the leftover suffix is O(1).
+        Only a dummy node and a few pointers are added; existing nodes are reused.
+        """
         # A dummy head lets empty inputs and the first insertion use the same code.
         dummy = ListNode()
         tail = dummy

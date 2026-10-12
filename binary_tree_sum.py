@@ -15,7 +15,13 @@ class TreeNode:
         self.right = right
 
     def __str__(self) -> str:
-        """Return a sideways display, with right children above their parents."""
+        """Return a sideways display, with right children above their parents.
+
+        Building indentation/lines and joining c displayed characters costs
+        O(c) formatting time and string storage, plus O(h) call frames
+        for tree height h.
+        A chain can produce O(n^2) indentation characters as depth grows.
+        """
         lines: list[str] = []
 
         def visit(
@@ -33,7 +39,12 @@ class TreeNode:
         return "\n".join(lines)
 
     def find_sum(self) -> int:
-        """Sum all values in O(n) time and O(h) stack space, for tree height h."""
+        """Sum all values in O(n) time and O(h) stack space, for tree height h.
+
+        Each of n nodes contributes once, assuming constant-cost additions.
+        Only one root-to-leaf path is active, giving h call frames: O(log n)
+        for a balanced tree and O(n) for a chain. No value list is collected.
+        """
 
         def subtree_sum(node: "TreeNode | None") -> int:
             if node is None:

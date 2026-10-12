@@ -2,7 +2,7 @@
 
 I'm working through LeetCode in Python and implementing the data structures behind the problems. I keep different versions when they help compare the approaches.
 
-The comments explain the main ideas, and the docstrings note input assumptions and time or space costs.
+The comments explain the main ideas and why the time and space costs follow from the loops, recursion, and stored data. They distinguish expected and worst-case time and account for temporary storage and returned results.
 
 ## Problems
 
@@ -46,8 +46,8 @@ The comments explain the main ideas, and the docstrings note input assumptions a
 | [binary_tree_traversals.py](binary_tree_traversals.py) | Defines a binary-tree node with recursive `preorder()`, `inorder()`, and `postorder()` methods and a sideways tree display. |
 | [binary_tree_sum.py](binary_tree_sum.py) | Builds a binary tree, prints it sideways, and recursively sums its values. |
 | [factorial_and_fibonacci.py](factorial_and_fibonacci.py) | Practices direct recursion with factorial and Fibonacci, including zero base cases and checks for negative inputs. |
-| [running_median_insertion_sort_compact.py](running_median_insertion_sort_compact.py) | Prints a running median by inserting each new number into a sorted list. |
-| [running_median_insertion_sort.py](running_median_insertion_sort.py) | Another version of the same running-median approach, with the insertion steps broken out. |
+| [running_median_insertion_sort_compact.py](running_median_insertion_sort_compact.py) | Prints running medians with insertion sort and a compact median expression. |
+| [running_median_insertion_sort.py](running_median_insertion_sort.py) | Prints running medians with insertion sort and explicit odd/even cases. |
 
 ## Running the examples
 

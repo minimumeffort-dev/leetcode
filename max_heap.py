@@ -2,14 +2,24 @@
 
 
 class MaxHeap:
-    """Keep each parent >= its children; insert and delete take O(log n)."""
+    """Keep each parent >= its children in a complete binary tree.
+
+    With n entries the tree height is O(log n), and sifting follows one
+    parent/child path with constant work per level. Insert/delete therefore
+    take O(log n) amortized time, including Python's amortized O(1) list
+    append/pop operations. The backing list holds n values, using O(n) space.
+    """
 
     def __init__(self) -> None:
         self.data: list[int] = []
         self.size = 0
 
     def heapify_up(self, index: int) -> None:
-        """Move a newly inserted node up while its parent is smaller."""
+        """Move a newly inserted node up while its parent is smaller.
+
+        The parent index halves at each step, allowing at most O(log n)
+        swaps. Only the current and parent indices add O(1) extra space.
+        """
         while index > 0:
             # Subtract one before halving because the root occupies index zero.
             parent = (index - 1) // 2
@@ -24,7 +34,11 @@ class MaxHeap:
             index = parent
 
     def heapify_down(self) -> None:
-        """Move the root down until every parent is at least its children."""
+        """Move the root down until every parent is at least its children.
+
+        Compare at most two children per level along one path of height
+        O(log n). Time is O(log n), and the handful of indices uses O(1) space.
+        """
         index = 0
         while index < self.size:
             left_child = 2 * index + 1

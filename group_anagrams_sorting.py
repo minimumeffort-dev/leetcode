@@ -3,7 +3,14 @@
 
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        """Group n words of maximum length k in O(n * k log k) time."""
+        """Group words by a sorted-letter key.
+
+        A k-letter word needs O(k log(k + 1)) sorting work, plus O(k) to
+        join and hash its key. For n words of maximum length k, expected
+        time is O(n * (1 + k log(k + 1))); the 1 covers empty words too.
+        Stored keys use at most the total input character count C, and the
+        groups hold n word references, giving O(C + n) extra space.
+        """
         groups: dict[str, list[str]] = {}
         for word in strs:
             # Anagrams have the same letters once sorted, including duplicates.

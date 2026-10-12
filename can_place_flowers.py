@@ -3,7 +3,12 @@
 
 class Solution:
     def canPlaceFlowers(self, flowerbed: list[int], n: int) -> bool:
-        """Scan the bed without modifying it; linear time, constant extra space."""
+        """Scan the bed without modifying it; linear time, constant extra space.
+
+        The index only moves forward, checking each plot at most once. Each
+        check reads at most two neighbors, so time is O(number of plots).
+        The counters use O(1) space, and no copy of the bed is created.
+        """
         if n == 0:
             return True
 

@@ -3,7 +3,12 @@
 
 class Solution:
     def moveZeroes(self, nums: list[int]) -> None:
-        """Move zeros in place, preserving nonzero order; O(n) time, O(1) space."""
+        """Move zeros in place, preserving nonzero order; O(n) time, O(1) space.
+
+        The read pointer visits n positions once; each visit does at most
+        one constant-time swap. The write pointer and loop variables are
+        the only extra storage, so no extra array is needed.
+        """
         write = 0
 
         for read in range(len(nums)):

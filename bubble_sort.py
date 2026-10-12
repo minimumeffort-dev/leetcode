@@ -2,7 +2,12 @@
 
 
 def bubble_sort(elements: list[int]) -> list[int]:
-    """Sort stably in place; O(n^2) worst-case time and O(1) extra space."""
+    """Sort stably in place; O(n^2) worst-case time and O(1) extra space.
+
+    A pass compares n - 1 adjacent pairs, and up to O(n) passes are needed:
+    O(n) work per pass times O(n) passes gives O(n^2). An already sorted
+    list stops after one O(n) pass. Swaps and loop variables use O(1) space.
+    """
     swapped = True
 
     # A pass without swaps proves that every neighboring pair is in order.
