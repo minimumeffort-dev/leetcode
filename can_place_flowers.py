@@ -1,22 +1,27 @@
+"""LeetCode 605: Can Place Flowers."""
+
+
 class Solution:
     def canPlaceFlowers(self, flowerbed: list[int], n: int) -> bool:
+        """Scan the bed without modifying it; linear time, constant extra space."""
         if n == 0:
             return True
 
-        i = 0
+        index = 0
         length = len(flowerbed)
 
-        while i < length:
+        while index < length:
             if (
-                flowerbed[i] == 0
-                and (i == 0 or flowerbed[i - 1] == 0)
-                and (i == length - 1 or flowerbed[i + 1] == 0)
+                flowerbed[index] == 0
+                and (index == 0 or flowerbed[index - 1] == 0)
+                and (index == length - 1 or flowerbed[index + 1] == 0)
             ):
                 n -= 1
                 if n == 0:
                     return True
-                i += 2
+                # Skip the plot blocked by this placement instead of mutating it.
+                index += 2
             else:
-                i += 1
+                index += 1
 
         return False

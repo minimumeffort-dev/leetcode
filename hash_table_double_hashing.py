@@ -1,7 +1,11 @@
+"""A fixed-size string-key hash table with double hashing."""
+
 from math import isqrt
 
 
 class KeyValue:
+    """One stored entry, with readable representations for printing the table."""
+
     def __init__(self, key: str, value: object) -> None:
         self.key = key
         self.value = value
@@ -10,6 +14,7 @@ class KeyValue:
         return f"({self.key}, {self.value})"
 
     def __repr__(self) -> str:
+        # !r preserves string quotes when entries appear inside a printed list.
         return f"({self.key!r}, {self.value!r})"
 
 
@@ -31,21 +36,16 @@ class HashTable:
 
         index is -1 when the key is absent and the table is full.
         """
-        h1 = hash(key)
-        first_index = h1 % len(self.data)
+        first_index = hash(key) % len(self.data)
         entry = self.data[first_index]
 
         if entry is None:
-            # key was not found
             return False, first_index
         if entry.key == key:
-            # already stored in the array
             return True, first_index
 
-        # at this point we have a collision
-        h2 = hash(key + "d")
-        # With a prime table size, every allowed stride reaches every slot.
-        stride = h2 % (len(self.data) - 1) + 1
+        # A prime capacity and a nonzero stride visit every slot before wrapping.
+        stride = hash(key + "d") % (len(self.data) - 1) + 1
         second_index = (first_index + stride) % len(self.data)
 
         while second_index != first_index:
@@ -56,7 +56,7 @@ class HashTable:
                 return True, second_index
             second_index = (second_index + stride) % len(self.data)
 
-        # table is full
+        # Returning to the first slot means every possible position was checked.
         return False, -1
 
     def insert(self, key: str, value: object) -> None:
@@ -86,10 +86,10 @@ class HashTable:
 
 
 if __name__ == "__main__":
-    ht = HashTable(7)
-    print(ht.data)
-    ht.insert("apple", 1)
-    ht.insert("banana", 2)
-    ht.insert("cherry", 3)
-    print(ht.data)
-    print(ht.search("cherry"))
+    table = HashTable(7)
+    print(table.data)
+    table.insert("apple", 1)
+    table.insert("banana", 2)
+    table.insert("cherry", 3)
+    print(table.data)
+    print(table.search("cherry"))

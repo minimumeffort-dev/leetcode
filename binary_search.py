@@ -1,19 +1,24 @@
+"""Binary search over an ascending list."""
+
+
 def binary_search(arr: list[int], target: int) -> int:
     """Return a matching index for target, or -1 if target is absent.
 
     arr must be sorted in ascending order. If duplicates are present,
     any matching index may be returned.
+    Time is O(log n); extra space is O(1).
     """
     left, right = 0, len(arr) - 1
 
     while left <= right:
-        mid = (left + right) // 2
-        if arr[mid] == target:
-            return mid
-        elif arr[mid] < target:
-            left = mid + 1
+        middle = (left + right) // 2
+        if arr[middle] == target:
+            return middle
+        # Discard the half that cannot contain the target, including middle.
+        if arr[middle] < target:
+            left = middle + 1
         else:
-            right = mid - 1
+            right = middle - 1
 
     return -1
 

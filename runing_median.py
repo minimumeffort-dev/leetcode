@@ -1,17 +1,25 @@
-def running_median(elements):
-    sorted_numbers = []
+"""Running medians using insertion sort and a compact median expression."""
 
-    for anchor in elements:
-        sorted_numbers.append(anchor)
-        j = len(sorted_numbers) - 1 - 1
+from collections.abc import Iterable
 
-        while j >= 0 and sorted_numbers[j] > anchor:
-            sorted_numbers[j + 1] = sorted_numbers[j]
-            j -= 1
-        sorted_numbers[j + 1] = anchor
+
+def running_median(elements: Iterable[int | float]) -> None:
+    """Print each running median; O(n^2) total worst-case time, O(n) space."""
+    sorted_numbers: list[int | float] = []
+
+    for value in elements:
+        sorted_numbers.append(value)
+        previous_index = len(sorted_numbers) - 2
+
+        # Insert the new value into the sorted prefix before reading its middle.
+        while previous_index >= 0 and sorted_numbers[previous_index] > value:
+            sorted_numbers[previous_index + 1] = sorted_numbers[previous_index]
+            previous_index -= 1
+        sorted_numbers[previous_index + 1] = value
 
         middle = len(sorted_numbers) // 2
 
+        # An even prefix has two middle values instead of one.
         print(
             sorted_numbers[middle]
             if len(sorted_numbers) % 2 == 1

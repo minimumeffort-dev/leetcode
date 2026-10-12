@@ -2,6 +2,8 @@
 
 I'm working through LeetCode in Python and implementing the data structures behind the problems. I keep different versions when they help compare the approaches.
 
+The comments explain the main ideas, and the docstrings note input assumptions and time or space costs.
+
 ## Problems
 
 | File | What it does |
@@ -40,10 +42,10 @@ I'm working through LeetCode in Python and implementing the data structures behi
 | [hash_table_double_hashing.py](hash_table_double_hashing.py) | Uses a second hash to handle collisions in a fixed-size table. |
 | [heap.py](heap.py) | Implements a max heap with insertion, removal of the maximum, and sifting in both directions. |
 | [heapify.py](heapify.py) | Builds a max heap from an existing list by sifting parents down from the bottom. |
-| [linked_lists.py](linked_lists.py) | Implements a doubly linked list with insertion at the head, search, and deletion. |
+| [linked_lists.py](linked_lists.py) | Implements a doubly linked list with head insertion, search, deletion, and a readable display. |
 | [binary_tree.py](binary_tree.py) | Defines a binary-tree node with recursive `preorder()`, `inorder()`, and `postorder()` methods and a sideways tree display. |
 | [tree.py](tree.py) | Builds a binary tree, prints it sideways, and recursively sums its values. |
-| [recursion.py](recursion.py) | Practices recursion with factorial and Fibonacci functions. |
+| [recursion.py](recursion.py) | Practices direct recursion with factorial and Fibonacci, including zero base cases and checks for negative inputs. |
 | [runing_median.py](runing_median.py) | Prints a running median by inserting each new number into a sorted list. |
 | [running_median_insertion_sort.py](running_median_insertion_sort.py) | Another version of the same running-median approach, with the insertion steps broken out. |
 

@@ -1,3 +1,6 @@
+"""LeetCode 5: Longest Palindromic Substring, using Manacher's algorithm."""
+
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         """Find the longest palindrome with Manacher's algorithm: O(n) time/space."""
@@ -30,6 +33,7 @@ class Solution:
                 right = i + radii[i]
 
             if radii[i] > best_length:
+                # Each radius equals the palindrome length in the original string.
                 best_length = radii[i]
                 best_start = (i - radii[i]) // 2
 

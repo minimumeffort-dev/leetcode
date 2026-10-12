@@ -1,10 +1,17 @@
+"""A max heap backed by a zero-indexed list."""
+
+
 class MaxHeap:
+    """Keep each parent >= its children; insert and delete take O(log n)."""
+
     def __init__(self) -> None:
         self.data: list[int] = []
         self.size = 0
 
     def heapify_up(self, index: int) -> None:
+        """Move a newly inserted node up while its parent is smaller."""
         while index > 0:
+            # Subtract one before halving because the root occupies index zero.
             parent = (index - 1) // 2
 
             if self.data[index] <= self.data[parent]:
@@ -20,17 +27,17 @@ class MaxHeap:
         """Move the root down until every parent is at least its children."""
         index = 0
         while index < self.size:
-            child_left = 2 * index + 1
-            child_right = 2 * index + 2
+            left_child = 2 * index + 1
+            right_child = 2 * index + 2
             largest = index
 
-            if child_left < self.size and self.data[child_left] > self.data[largest]:
-                largest = child_left
+            if left_child < self.size and self.data[left_child] > self.data[largest]:
+                largest = left_child
 
-            if child_right < self.size and self.data[child_right] > self.data[largest]:
-                largest = child_right
+            if right_child < self.size and self.data[right_child] > self.data[largest]:
+                largest = right_child
 
-            # this means we haven't found a larger child, so we can stop
+            # Both child subtrees are heaps; swapping with the larger child is safe.
             if largest == index:
                 break
 
@@ -41,6 +48,7 @@ class MaxHeap:
             index = largest
 
     def insert(self, value: int) -> None:
+        """Append a value at the next leaf position, then restore heap order."""
         self.data.append(value)
         self.size += 1
         self.heapify_up(self.size - 1)
@@ -50,6 +58,7 @@ class MaxHeap:
         if self.size == 0:
             raise IndexError("Cannot delete from an empty heap")
 
+        # Replace the root with the last leaf to preserve the complete tree shape.
         self.data[0], self.data[-1] = self.data[-1], self.data[0]
         maximum = self.data.pop()
         self.size -= 1

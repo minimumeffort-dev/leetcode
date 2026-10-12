@@ -1,3 +1,6 @@
+"""LeetCode 203: Remove Linked List Elements."""
+
+
 class ListNode:
     """A singly linked list node for local use; LeetCode supplies this class."""
 
@@ -8,6 +11,8 @@ class ListNode:
 
 class Solution:
     def removeElements(self, head: ListNode | None, val: int) -> ListNode | None:
+        """Remove matching nodes in O(n) time and O(1) extra space."""
+        # Head matches have no previous node to reconnect, so handle them first.
         while head is not None and head.val == val:
             head = head.next
 
@@ -17,6 +22,7 @@ class Solution:
         current = head
         while current.next is not None:
             if current.next.val == val:
+                # Keep current here: its new next node may also need removal.
                 current.next = current.next.next
             else:
                 current = current.next

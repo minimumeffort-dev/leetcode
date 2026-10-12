@@ -1,17 +1,21 @@
-def heapify(arr):
+"""Build a max heap from an existing list, working from the bottom up."""
+
+
+def heapify(arr: list[int]) -> None:
+    """Rearrange arr in place in O(n) time and O(1) extra space."""
     size = len(arr)
-    # leaves already satisfy the heap property
-    for i in range(size // 2 - 1, -1, -1):
-        index = i
+    # Leaves are already heaps; each parent's child subtrees are ready before it.
+    for parent_index in range(size // 2 - 1, -1, -1):
+        index = parent_index
         while index < size:
-            child_left = 2 * index + 1
-            child_right = 2 * index + 2
+            left_child = 2 * index + 1
+            right_child = 2 * index + 2
             largest = index
 
-            if child_left < size and arr[child_left] > arr[largest]:
-                largest = child_left
-            if child_right < size and arr[child_right] > arr[largest]:
-                largest = child_right
+            if left_child < size and arr[left_child] > arr[largest]:
+                largest = left_child
+            if right_child < size and arr[right_child] > arr[largest]:
+                largest = right_child
 
             if largest == index:
                 break

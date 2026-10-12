@@ -1,12 +1,20 @@
+"""Bubble sort with an early stop when a pass makes no swaps."""
+
+
 def bubble_sort(elements: list[int]) -> list[int]:
+    """Sort stably in place; O(n^2) worst-case time and O(1) extra space."""
     swapped = True
 
+    # A pass without swaps proves that every neighboring pair is in order.
     while swapped:
         swapped = False
-        for i in range(0, len(elements) - 1):
-            if elements[i] > elements[i + 1]:
+        for index in range(len(elements) - 1):
+            if elements[index] > elements[index + 1]:
                 swapped = True
-                elements[i], elements[i + 1] = elements[i + 1], elements[i]
+                elements[index], elements[index + 1] = (
+                    elements[index + 1],
+                    elements[index],
+                )
 
     return elements
 

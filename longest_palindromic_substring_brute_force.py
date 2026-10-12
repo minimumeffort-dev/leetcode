@@ -1,5 +1,9 @@
+"""LeetCode 5: Longest Palindromic Substring, using brute force."""
+
+
 class Solution:
     def isPalindrome(self, s: str) -> bool:
+        """Check mirrored characters without constructing a reversed string."""
         left, right = 0, len(s) - 1
 
         while left < right:
@@ -16,7 +20,7 @@ class Solution:
             return s
 
         best_length = 1
-        longest_sub = s[0]
+        best_substring = s[0]
 
         for start in range(len(s)):
             for end in range(start + 1, len(s) + 1):
@@ -24,9 +28,9 @@ class Solution:
                 if end - start <= best_length:
                     continue
 
-                sub = s[start:end]
-                if self.isPalindrome(sub):
+                substring = s[start:end]
+                if self.isPalindrome(substring):
                     best_length = end - start
-                    longest_sub = sub
+                    best_substring = substring
 
-        return longest_sub
+        return best_substring

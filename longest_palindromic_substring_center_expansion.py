@@ -1,3 +1,6 @@
+"""LeetCode 5: Longest Palindromic Substring, using center expansion."""
+
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         """Expand around centers: O(n^2) time, O(1) space excluding the result."""

@@ -1,3 +1,6 @@
+"""LeetCode 206: Reverse Linked List, with iterative and recursive versions."""
+
+
 class ListNode:
     """A singly linked list node for local use; LeetCode supplies this class."""
 
@@ -8,11 +11,13 @@ class ListNode:
 
 class Solution:
     def reverseList(self, head: ListNode | None) -> ListNode | None:
+        """Reverse links iteratively in O(n) time and O(1) extra space."""
         previous = None
         current = head
 
         while current is not None:
-            following = current.next  # Save the next node before changing the link.
+            # Save the remaining list before redirecting the current link.
+            following = current.next
             current.next = previous
             previous = current
             current = following
@@ -20,12 +25,13 @@ class Solution:
         return previous
 
     def reverseRecursive(self, head: ListNode | None) -> ListNode | None:
-        if not head:
-            return None
+        """Reverse links recursively in O(n) time and O(n) call-stack space."""
+        if head is None or head.next is None:
+            return head
 
-        newHead = head
-        if head.next:
-            newHead = self.reverseRecursive(head.next)
-            head.next.next = head
+        new_head = self.reverseRecursive(head.next)
+        # The rest is reversed; its former first node now points back to head.
+        head.next.next = head
+        # Break the old forward link so these two nodes do not form a cycle.
         head.next = None
-        return newHead
+        return new_head

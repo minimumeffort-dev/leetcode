@@ -1,32 +1,37 @@
+"""Stable merge sort using inclusive index ranges."""
+
+
 def merge(low: int, mid: int, high: int, elements: list[int]) -> list[int]:
     """Merge sorted ranges low..mid and mid+1..high back into elements."""
-    c = []
-    i = low
-    j = mid + 1
+    merged: list[int] = []
+    left = low
+    right = mid + 1
 
-    while i <= mid and j <= high:
-        if elements[i] <= elements[j]:
-            c.append(elements[i])
-            i += 1
+    while left <= mid and right <= high:
+        # Choosing the left half on ties keeps equal values in their input order.
+        if elements[left] <= elements[right]:
+            merged.append(elements[left])
+            left += 1
         else:
-            c.append(elements[j])
-            j += 1
+            merged.append(elements[right])
+            right += 1
 
-    while i <= mid:
-        c.append(elements[i])
-        i += 1
-    while j <= high:
-        c.append(elements[j])
-        j += 1
+    while left <= mid:
+        merged.append(elements[left])
+        left += 1
+    while right <= high:
+        merged.append(elements[right])
+        right += 1
 
-    for index, value in enumerate(c, start=low):
+    # Write back into the original list so the parent merge sees sorted halves.
+    for index, value in enumerate(merged, start=low):
         elements[index] = value
 
     return elements
 
 
 def merge_sort(low: int, high: int, elements: list[int]) -> list[int]:
-    """Sort the inclusive range low..high and return the original list."""
+    """Sort low..high in place; O(n log n) time and O(n) extra space."""
     if low < high:
         mid = (low + high) // 2
         merge_sort(low, mid, elements)
