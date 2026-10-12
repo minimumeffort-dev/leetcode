@@ -41,7 +41,7 @@ I'm working through LeetCode in Python and implementing the data structures behi
 | [heap.py](heap.py) | Implements a max heap with insertion, removal of the maximum, and sifting in both directions. |
 | [heapify.py](heapify.py) | Builds a max heap from an existing list by sifting parents down from the bottom. |
 | [linked_lists.py](linked_lists.py) | Implements a doubly linked list with insertion at the head, search, and deletion. |
-| [binary_tree.py](binary_tree.py) | Defines a binary-tree node with recursive preorder, inorder, and postorder traversals and a sideways tree display. |
+| [binary_tree.py](binary_tree.py) | Defines a binary-tree node with recursive `preorder()`, `inorder()`, and `postorder()` methods and a sideways tree display. |
 | [tree.py](tree.py) | Builds a binary tree, prints it sideways, and recursively sums its values. |
 | [recursion.py](recursion.py) | Practices recursion with factorial and Fibonacci functions. |
 | [runing_median.py](runing_median.py) | Prints a running median by inserting each new number into a sorted list. |

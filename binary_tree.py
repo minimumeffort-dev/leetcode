@@ -18,43 +18,46 @@ class Node:
         visit(self)
         return "\n".join(lines)
 
-    def preorder(self, root, nodes=None):
-        if nodes is None:
-            nodes = []
+    def preorder(self):
+        nodes = []
 
-        if root is None:
-            return nodes
+        def visit(node):
+            if node is None:
+                return
 
-        nodes.append(root.value)
-        self.preorder(root.left, nodes)
-        self.preorder(root.right, nodes)
+            nodes.append(node.value)
+            visit(node.left)
+            visit(node.right)
 
+        visit(self)
         return nodes
 
-    def inorder(self, root, nodes=None):
-        if nodes is None:
-            nodes = []
+    def inorder(self):
+        nodes = []
 
-        if root is None:
-            return nodes
+        def visit(node):
+            if node is None:
+                return
 
-        self.inorder(root.left, nodes)
-        nodes.append(root.value)
-        self.inorder(root.right, nodes)
+            visit(node.left)
+            nodes.append(node.value)
+            visit(node.right)
 
+        visit(self)
         return nodes
 
-    def postorder(self, root, nodes=None):
-        if nodes is None:
-            nodes = []
+    def postorder(self):
+        nodes = []
 
-        if root is None:
-            return nodes
+        def visit(node):
+            if node is None:
+                return
 
-        self.postorder(root.left, nodes)
-        self.postorder(root.right, nodes)
-        nodes.append(root.value)
+            visit(node.left)
+            visit(node.right)
+            nodes.append(node.value)
 
+        visit(self)
         return nodes
 
 
@@ -62,9 +65,9 @@ if __name__ == "__main__":
     tree = Node(1, Node(2, Node(4), Node(5)), Node(3, Node(6), Node(7)))
     print(tree)
 
-    dlr = tree.preorder(tree)
+    dlr = tree.preorder()
     print(dlr)
-    ldr = tree.inorder(tree)
+    ldr = tree.inorder()
     print(ldr)
-    lrd = tree.postorder(tree)
+    lrd = tree.postorder()
     print(lrd)
