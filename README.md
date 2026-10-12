@@ -30,6 +30,7 @@ The comments explain the main ideas and why the time and space costs follow from
 | [merge_intervals.py](merge_intervals.py) | Sorts intervals by their start, then combines overlapping ranges in one pass. |
 | [meeting_rooms_ii.py](meeting_rooms_ii.py) | Sorts meetings by their start and reuses rooms with a min-heap of end times. |
 | [validate_binary_search_tree.py](validate_binary_search_tree.py) | Solves [LeetCode 98](https://leetcode.com/problems/validate-binary-search-tree/) by checking each node against bounds inherited from its ancestors. [Submission](https://leetcode.com/problems/validate-binary-search-tree/submissions/2169960110/). |
+| [lowest_common_ancestor.py](lowest_common_ancestor.py) | Solves [LeetCode 236](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) by passing targets or their shared ancestor up the tree, assuming both targets exist. |
 
 ## Algorithms and data structures
 
