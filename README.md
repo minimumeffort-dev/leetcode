@@ -37,6 +37,7 @@ The comments explain the main ideas and why the time and space costs follow from
 | [number_of_provinces.py](number_of_provinces.py) | Solves [LeetCode 547](https://leetcode.com/problems/number-of-provinces/) by starting BFS from each unvisited city and counting the connected groups in the matrix. |
 | [clone_graph.py](clone_graph.py) | Solves [LeetCode 133](https://leetcode.com/problems/clone-graph/) with recursive DFS, keeping one copy per original node so cycles and shared neighbours reuse the same copies. |
 | [number_of_connected_components.py](number_of_connected_components.py) | Solves [LeetCode 323](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/) with union-find, using component sizes and path halving to keep searches short and counting only successful merges. |
+| [number_of_islands.py](number_of_islands.py) | Solves [LeetCode 200](https://leetcode.com/problems/number-of-islands/) with BFS, counting each group of horizontally or vertically connected land cells while leaving the grid unchanged. |
 | [sliding_window_median_sorted_list.py](sliding_window_median_sorted_list.py) | Finds [LeetCode 480](https://leetcode.com/problems/sliding-window-median/) window medians by updating one sorted list; each slide costs O(k) because elements shift. |
 | [sliding_window_median_heaps.py](sliding_window_median_heaps.py) | Finds [LeetCode 480](https://leetcode.com/problems/sliding-window-median/) window medians with two heaps in O(n log(k+1)) time, using index tags and occasional cleanup to keep working storage O(k). |
 
